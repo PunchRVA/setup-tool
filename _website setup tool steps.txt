@@ -1,0 +1,38 @@
+Things needed for setup tool
+
+Defaults:
+	local folder: ~/Sites
+	db host/u/p: ~/.PUNCH/config.json
+	each project has a config file
+	.PUNCH repo with templated package.json and Gruntfile
+
+Existing project:
+	select repo
+	clone locally
+	setup db
+		create local db
+		pull name from project config file
+		pull u/p from computer config file
+	pull staging db and import to local
+		pull h/u/p from config file in project
+	npm install (as needed)
+
+New project:
+	create local repo
+	make first commit
+	create beanstalk repo, push first commit
+	Create config data
+	create db
+	download software (when available)
+	copy package.json and Gruntfile from .PUNCH
+	NPM install
+	create staging environment(?) (https://docs.webfaction.com/xmlrpc-api/)
+
+Helpers:
+	// Get all repos in beanstalk
+	curl --user chrisma:692b2b0c6872274106058d4b51c7552d6494b623528339f47f --user-agent "test" --header "Content-Type:application/json" -d '{"public_key": {"user_id":"chrisma", "content":"test"}}' https://punchrva.beanstalkapp.com/api/public_keys.json
+
+	// Get names for all repos (via underscore)
+	var repos = <the JSON response>;
+	repos = _.pluck(repos, "repository");
+	_.pluck(repos, "title");
