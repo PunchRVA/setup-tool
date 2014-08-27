@@ -23,7 +23,7 @@ def getRepositories(my_globals):
     import requests
     from requests.auth import HTTPBasicAuth
 
-    url = my_globals["repo_api"]["url"]
+    url = ''.join([my_globals["repo_api"]["url"], "repositories.json"])
     user = my_globals["repo_api"]["username"]
     password = my_globals["repo_api"]["password"]
 
