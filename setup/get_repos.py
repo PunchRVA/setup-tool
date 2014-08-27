@@ -36,6 +36,8 @@ def getRepositories(my_globals):
         headers=headers,
         auth=HTTPBasicAuth(user, password)
     )
+    from pprint import pprint
+    pprint(req)
 
     p = urllib2.HTTPPasswordMgrWithDefaultRealm()
     p.add_password(None, url, user, password)
