@@ -20,24 +20,27 @@ from global_var import *
 
 
 def getRepositories(my_globals):
+    import requests
+
     url = my_globals["repo_api"]["url"]
     user = my_globals["repo_api"]["username"]
     password = my_globals["repo_api"]["password"]
-    content_type = "application/json"
+
+    headers = {
+        'Content-Type': "application/json",
+        'User-Agent': "setup tool"
+    }
+
+    req = requests.get(
+        url,
+        headers=headers,
+        auth=HTTPBasicAuth(user, password)
+    )
 
     p = urllib2.HTTPPasswordMgrWithDefaultRealm()
     p.add_password(None, url, user, password)
 
-    handler = urllib2.HTTPBasicAuthHandler(p)
-    opener = urllib2.build_opener(handler)
-    urllib2.install_opener(opener)
-
-    req = urllib2.Request(url)
-    req.add_header('Content-Type', content_type)
-    req.add_header('User-Agent', "setup tool")
-    resp = urllib2.urlopen(req)
-
-    my_globals["repoJSON"] = json.loads(resp.read())
+    my_globals["repoJSON"] = req.json()
 
     # Pretty print for debugging
     # print json.dumps(my_globals["repoJSON"], sort_keys=True, indent=2, separators=(',', ': '))
