@@ -21,6 +21,7 @@ from global_var import *
 
 def getRepositories(my_globals):
     import requests
+    from requests.auth import HTTPBasicAuth
 
     url = my_globals["repo_api"]["url"]
     user = my_globals["repo_api"]["username"]
