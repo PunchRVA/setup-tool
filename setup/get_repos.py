@@ -11,7 +11,7 @@
 #       pull h/u/p from config file in project
 #   npm install (as needed)
 
-import urllib2
+# import urllib2
 import json
 import os
 import math
@@ -20,10 +20,10 @@ from global_var import *
 
 
 def getRepositories(my_globals):
-    import requests
-    from requests.auth import HTTPBasicAuth
+    from lib import requests
+    from lib.requests.auth import HTTPBasicAuth
 
-    url = ''.join([my_globals["repo_api"]["url"], "repositories.json"])
+    url = my_globals["repo_api"]["url"]
     user = my_globals["repo_api"]["username"]
     password = my_globals["repo_api"]["password"]
 
@@ -40,13 +40,15 @@ def getRepositories(my_globals):
     from pprint import pprint
     pprint(req)
 
-    p = urllib2.HTTPPasswordMgrWithDefaultRealm()
-    p.add_password(None, url, user, password)
+    # p = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    # p.add_password(None, url, user, password)
 
     my_globals["repoJSON"] = req.json()
 
     # Pretty print for debugging
-    # print json.dumps(my_globals["repoJSON"], sort_keys=True, indent=2, separators=(',', ': '))
+    # print json.dumps(my_globals["repoJSON"], 
+    #                    sort_keys=True, 
+    #                    indent=2, separators=(',', ': '))
 
     # save to file
     with open(os.environ['HOME'] +

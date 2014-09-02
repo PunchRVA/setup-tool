@@ -13,7 +13,7 @@
 #   npm install (as needed)
 
 from global_var import *
-import sh
+from lib import sh
 # import mysql.connector
 mysql = sh.Command("/Applications/MAMP/Library/bin/mysql")
 

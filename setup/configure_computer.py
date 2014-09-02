@@ -9,8 +9,8 @@
 import os
 import json
 import urllib2
-import requests
-from requests.auth import HTTPBasicAuth
+from lib import requests
+from lib.requests.auth import HTTPBasicAuth
 from os.path import exists
 
 # globals
@@ -241,7 +241,7 @@ def get_user_list():
 
 def send_ssh_to_webfaction():
     import xmlrpclib
-    from sh import scp
+    from lib.sh import scp
 
     # Secure copy public key to staging
     scp(
