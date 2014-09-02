@@ -15,8 +15,6 @@
 import json
 import os
 from os.path import exists
-import sh
-from sh import git
 
 from global_var import *
 
