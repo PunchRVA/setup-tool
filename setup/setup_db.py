@@ -150,6 +150,8 @@ def pull_from_remote(my_globals):
     ssh_url = ''.join([my_globals["staging"]["username"],
                       "@",
                       my_globals["staging"]["url"]])
+    import re
+    escaped_password = re.escape(my_globals["staging"]["database"]["password"])
 
     # print sh.ssh(ssh_url, "ls")
     my_server = sh.ssh.bake(ssh_url)
@@ -157,7 +159,7 @@ def pull_from_remote(my_globals):
     print "Downloading staging database."
     my_server.mysqldump(my_globals["db_name"],
                         u=my_globals["staging"]["database"]["username"],
-                        password=my_globals["staging"]["database"]["password"],
+                        password=escaped_password,
                         _out=dump_file)
     print ""
 
