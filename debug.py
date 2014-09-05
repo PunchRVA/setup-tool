@@ -42,34 +42,6 @@ except:
     # quit()
 
 
-my_globals = {
-    'SITE_DIR': '/Users/bashit/Sites/primate-rescue-center',
-    'database': {
-        'hostname': 'localhost',
-        'password': 'root',
-        'username': 'root'
-    },
-    'db_name': 'punchrva_primate',
-    'projects_dir': '/Users/bashit/Sites',
-    'repo_api': {
-        'password': '692b2b0c6872274106058d4b51c7552d6494b623528339f47f',
-        'url': 'https://punchrva.beanstalkapp.com/api/repositories.json',
-        'username': 'chrisma'
-    },
-    'staging': {
-        'database': {
-            'database': 'punchrva_primate',
-            'hostname': 'localhost',
-            'password': 'jYvY6JMxDL6FwL',
-            'username': 'punchrva_primate'
-        },
-        'password': '163553fb',
-        'url': 'web328.webfaction.com',
-        'username': 'punchrva'
-    }
-}
-
-
 try:
     my_globals["SITE_DIR"] = "/Users/bashit/Sites/primate-rescue-center"
     find_database_name(my_globals)
