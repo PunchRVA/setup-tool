@@ -46,8 +46,8 @@ def getRepositories(my_globals):
     my_globals["repoJSON"] = req.json()
 
     # Pretty print for debugging
-    # print json.dumps(my_globals["repoJSON"], 
-    #                    sort_keys=True, 
+    # print json.dumps(my_globals["repoJSON"],
+    #                    sort_keys=True,
     #                    indent=2, separators=(',', ': '))
 
     # save to file
@@ -68,11 +68,19 @@ def getRepositories(my_globals):
         if l > longestName:
             longestName = l + 1
 
-    cols = int(math.floor(80/longestName))
+    colCount = int(math.floor(80/longestName))
+    rowCount = (len(allTitles)/colCount) + 1
 
-    split = [allTitles[i:i+len(allTitles)/cols]
-             for i in range(0, len(allTitles), len(allTitles)/cols)]
-    for row in zip(*split):
+    # Take the titles and split them into columns
+    columns = [allTitles[i:i+rowCount]
+             for i in range(0, len(allTitles), rowCount)]
+
+    # Equalize the lengths of the columns
+    for i in range(1, colCount):
+        while len(columns[i]) < len(columns[i-1]):
+            columns[i].append("")
+    
+    for row in zip(*columns):
         print "".join(str.ljust(str(i), longestName) for i in row)
 
 

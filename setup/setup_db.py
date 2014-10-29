@@ -80,7 +80,8 @@ def find_database_name(my_globals):
             # print "-----"
             if staging_db_config['database'] not in db_name:
                 db_name.append(staging_db_config['database'])
-    # print ""
+
+            # TODO: Create config.local.php -----------------------------------
 
     if len(db_name) is 1:
         my_globals["db_name"] = db_name
@@ -123,13 +124,6 @@ def pull_from_remote(my_globals):
         host = raw_input("Staging DB host: (localhost) ")
         user = raw_input("Staging DB user name: (punchrva_devs) ")
         passwd = raw_input("Staging DB password:")
-
-        # if ssh_host == "":
-        #     ssh_host = "punchrva@web328.webfaction.com"
-        # if host == "":
-        #     host = "localhost"
-        # if user == "":
-        #     user = "punchrva_devs"
 
         passwd = ''.join(['"', re.escape(passwd), '"'])
         ssh_host.split('@')
